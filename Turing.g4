@@ -22,7 +22,9 @@ lhs: OPENER STATE COMMA letter CLOSER;
 rhs: OPENER STATE COMMA letter COMMA DIRECTION CLOSER;
 turing_rule: lhs ARROW rhs;
 
-program: (turing_rule NEWLINE)* turing_rule NEWLINE?;
+// each rule ends with newline except the last one (optional newline). this last clause is also optional as the program could be empty
+// antlr should resolve whichever is the case for the program correctly as these combinations don't conflict
+program: (turing_rule NEWLINE)* (turing_rule NEWLINE?)?;
 
 // antlr4 -no-listener .\Turing.g4;javac *.java;grun Turing program -gui 
 // (qinit, ⬚) -> (q1, 1, right)
