@@ -23,6 +23,8 @@ Where `state` is the name of the state, `letter` is the symbol on the tape at th
 
 When the pointer is over the given letter whilst in the given state on the LHS, it overwrites the letter with the new letter, changes to the new state, and moves the pointer in the direction specified on the RHS.
 
+If no applicable rule is found, the machine halts.
+
 The empty letter is represented by the symbol `⬚`.
 
 Whitespace is permitted between tokens, but not within tokens.
