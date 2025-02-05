@@ -25,6 +25,8 @@ turing_rule: SPACE* lhs SPACE* ARROW SPACE* rhs SPACE*;
 
 // lines not starting with the opener (ignoring whitespace before it) are treated as comments
 // we exclude newlines from the comment body to avoid ambiguity with the newline separator which is required between rules
+// there is no prefix character for comments, they are just lines that don't start with (
+// the impact of this is that comments cant begin with ( but i think that's fine, it could fallback if the rule doesn't match but that would be a bad debugging experience
 comment: ~(OPENER | NEWLINE) (~NEWLINE)*;
 
 line: turing_rule | comment;
