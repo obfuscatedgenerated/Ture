@@ -23,24 +23,11 @@ lhs: OPENER SPACE* state SPACE* COMMA SPACE* letter SPACE* CLOSER;
 rhs: OPENER SPACE* state SPACE* COMMA SPACE* letter SPACE* COMMA SPACE* DIRECTION SPACE* CLOSER;
 turing_rule: SPACE* lhs SPACE* ARROW SPACE* rhs SPACE*;
 
-program: (turing_rule NEWLINE* SPACE*)*;
+// lines not starting with the opener (ignoring whitespace before it) are treated as comments
+// we exclude newlines from the comment body to avoid ambiguity with the newline separator which is required between rules
+comment: ~(OPENER | NEWLINE) (~NEWLINE)*;
 
-// note: blank will not be parsed properly by LEGAL_CHAR when using ASCII based programs (like grun, but it's fine with proper handling like in the intellij plugin)
+line: turing_rule | comment;
 
-/*
-(qInit, a) -> (qA, a, right)
-(qInit, b) -> (qB, b, right)
-
-(qA, a) -> (qA, a, right)
-(qA, b) -> (qA, b, right)
-(qB, a) -> (qB, a, right)
-(qB, b) -> (qB, b, right)
-
-(qA, ⬚) -> (qEndA, ⬚, left)
-(qB, ⬚) -> (qEndB, ⬚, left)
-
-(qEndA, a) -> (qHalt, a, right)
-(qEndA, b) -> (qHalt, a, right)
-(qEndB, a) -> (qHalt, b, right)
-(qEndB, b) -> (qHalt, b, right)
-*/
+// must be 1 to n newlines between rules. the last line can have 0 to n newlines. there may be no lines.
+program: (line NEWLINE+ SPACE*)* (line NEWLINE*)?;
