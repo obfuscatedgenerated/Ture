@@ -1,6 +1,6 @@
 grammar Turing;
 
-WS: [ \t]+;
+SPACE: [ \t]+;
 NEWLINE: '\n' | '\r\n' | '\r';
 
 OPENER: '(';
@@ -19,11 +19,11 @@ letter: LEGAL_CHAR | EMPTY;
 state: LEGAL_CHAR+;
 
 // whitespace is allowed between the elements of each rule but not in state names etc (so we aren't skipping whitespace in the lexer)
-lhs: OPENER WS* state WS* COMMA WS* letter WS* CLOSER;
-rhs: OPENER WS* state WS* COMMA WS* letter WS* COMMA WS* DIRECTION WS* CLOSER;
-turing_rule: WS* lhs WS* ARROW WS* rhs WS*;
+lhs: OPENER SPACE* state SPACE* COMMA SPACE* letter SPACE* CLOSER;
+rhs: OPENER SPACE* state SPACE* COMMA SPACE* letter SPACE* COMMA SPACE* DIRECTION SPACE* CLOSER;
+turing_rule: SPACE* lhs SPACE* ARROW SPACE* rhs SPACE*;
 
-program: (turing_rule NEWLINE* WS*)*;
+program: (turing_rule NEWLINE* SPACE*)*;
 
 // note: blank will not be parsed properly by LEGAL_CHAR when using ASCII based programs (like grun, but it's fine with proper handling like in the intellij plugin)
 
