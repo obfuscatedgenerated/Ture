@@ -13,8 +13,8 @@ EMPTY: '⬚';
 
 DIRECTION: ('left' | 'right');
 
-// equivalent to ~(OPENER | CLOSER | COMMA | EMPTY | WS) except this syntax is unsupported.
-LEGAL_CHAR: ~('('|')'|','|'⬚'|' '|'\t'|'\r'|'\n');
+// equivalent to ~(OPENER | CLOSER | COMMA | EMPTY) except this syntax is unsupported.
+LEGAL_CHAR: ~('('|')'|','|'⬚');
 STATE: LEGAL_CHAR+;
 
 letter: LEGAL_CHAR | EMPTY;
