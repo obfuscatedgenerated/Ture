@@ -9,6 +9,24 @@ Open the `Turing.g4` file in IntelliJ IDEA, right click the `program` parse rule
 
 Eventually there will be a functioning Turing Machine simulator that uses the grammar to parse the transition rules and simulate the machine.
 
+## Syntax
+
+Rules are defined in the following format:
+
+```
+(state, letter) -> (state, letter, direction)
+```
+
+Where `state` is the name of the state, `letter` is the symbol on the tape at the current position, `direction` is either `left` or `right` and `state` is the name of the next state.
+
+When the pointer is over the given letter whilst in the given state on the LHS, it overwrites the letter with the new letter, changes to the new state, and moves the pointer in the direction specified on the RHS.
+
+The empty letter is represented by the symbol `⬚`.
+
+Lines that do not start with a `(` are ignored as comments (although whitespace can be added for indentation still).
+
+This means that comments cannot start with `(`, but this is a small price to pay for the simplicity of the syntax.
+
 ## Example programs
 
 ### Replace last letter of tape with the first letter
