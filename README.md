@@ -27,7 +27,7 @@ If no applicable rule is found, the machine halts.
 
 The empty letter is represented by the symbol `⬚`.
 
-The state names must not contain any of `, ()⬚` and letters must be a single character that is not `, ()`. It is convention to start state names with `q` but this is not enforced.
+The state names must not contain any of `,()⬚` or whitespace and letters must be a single character that is not `,()` or whitespace. It is convention to start state names with `q` but this is not enforced.
 
 Whitespace is permitted between tokens, but not within tokens.
 
