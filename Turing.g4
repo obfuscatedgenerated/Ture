@@ -13,8 +13,8 @@ EMPTY: '⬚';
 
 DIRECTION: ('left' | 'right');
 
-// TODO: this isnt exlcuding empty char???
-LEGAL_CHAR: ~[(),\u2B1A \t\r]; // any single character that is not () , ⬚, or whitespace. equivalent to ~(OPENER | CLOSER | COMMA | EMPTY | WS) except this syntax is unsupported. square char is multiple characters so cant use simple exclude either. not sure why it needs to explicitly check WS but hey ho
+// equivalent to ~(OPENER | CLOSER | COMMA | EMPTY | WS) except this syntax is unsupported.
+LEGAL_CHAR: ~('('|')'|','|'⬚'|' '|'\t'|'\r'|'\n');
 STATE: LEGAL_CHAR+;
 
 letter: LEGAL_CHAR | EMPTY;
@@ -29,3 +29,4 @@ program: (turing_rule NEWLINE)* (turing_rule NEWLINE?)?;
 // antlr4 -no-listener .\Turing.g4;javac *.java;grun Turing program -gui 
 // (qinit, ⬚) -> (q1, 1, right)
 // ^Z enter
+// note: blank will not be parsed properly by LEGAL_CHAR when using ASCII based programs (like grun, but it's fine with proper handling like in the intellij plugin)
