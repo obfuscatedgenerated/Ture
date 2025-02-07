@@ -35,30 +35,30 @@ Whitespace is permitted between tokens, but not within tokens.
 
 ### Comments
 
-Lines that do not start with a `(` are ignored as comments (although whitespace can be added for indentation still).
+Comments start with `%` and can be placed anywhere in the program. Comments run from the `%` to the end of the line.
 
-This means that comments cannot start with `(`, but this is a small price to pay for the simplicity of the syntax.
+You can escape with `\%`.
 
 ## Example programs
 
 ### Replace last letter of tape with the first letter
 
 ```
-Store the first letter in the word as a state
+% Store the first letter in the word as a state
 (qInit, a) -> (qA, a, right)
 (qInit, b) -> (qB, b, right)
 
-Move to the end of the tape
+% Move to the end of the tape
 (qA, a) -> (qA, a, right)
 (qA, b) -> (qA, b, right)
 (qB, a) -> (qB, a, right)
 (qB, b) -> (qB, b, right)
 
-Backtrack once when we reach the end of the tape
+% Backtrack once when we reach the end of the tape
 (qA, ⬚) -> (qEndA, ⬚, left)
 (qB, ⬚) -> (qEndB, ⬚, left)
 
-Replace the last letter with the first letter and enter the trap state
+% Replace the last letter with the first letter and enter the trap state
 (qEndA, a) -> (qHalt, a, right)
 (qEndA, b) -> (qHalt, a, right)
 (qEndB, a) -> (qHalt, b, right)
