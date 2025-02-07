@@ -33,6 +33,8 @@ The state names must not contain any of `,()⬚` or whitespace and letters must 
 
 Whitespace is permitted between tokens, but not within tokens.
 
+It is recommended to add a newline at the end of each rule, but this is optional.
+
 ### Comments
 
 Comments start with `%` and can be placed anywhere in the program. Comments run from the `%` to the end of the line.

@@ -26,7 +26,4 @@ turing_rule: SPACE* lhs SPACE* ARROW SPACE* rhs SPACE*;
 
 COMMENT: '%' ~[\n\r]* -> skip;
 
-turing_line: turing_rule NEWLINE+;
-
-// must be 1 to n newlines between rules. the last line can have 0 to n newlines. there may be no lines.
-program: (turing_line | NEWLINE)* turing_rule?;
+program: (turing_rule | NEWLINE)*;
