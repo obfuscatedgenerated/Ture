@@ -31,9 +31,9 @@ The empty letter is represented by the symbol `⬚`.
 
 The state names must not contain any of `,()⬚` or whitespace and letters must be a single character that is not `,()` or whitespace. It is convention to start state names with `q` but this is not enforced.
 
-Whitespace is permitted between tokens, but not within tokens.
+It is recommended to add a newline at the end of each rule, but this is optional. Whitespace is also allowed before and after rules.
 
-It is recommended to add a newline at the end of each rule, but this is optional.
+Whitespace is permitted between tokens of the rule, but not within tokens such as state names or letters.
 
 ### Comments
 
