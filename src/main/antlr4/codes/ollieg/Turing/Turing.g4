@@ -12,18 +12,18 @@ EMPTY: '⬚';
 
 DIRECTION: ('left' | 'right');
 
-// equivalent to ~(OPENER | CLOSER | COMMA | EMPTY | WS | NEWLINE) except this syntax is unsupported.
-LEGAL_CHAR: ~('('|')'|','|'⬚'|' '|'\t'|'\n'|'\r');
-ESCAPED_PERCENT: '\\%';
+// equivalent to ~(OPENER | CLOSER | COMMA | EMPTY | SPACE | NEWLINE) except this syntax is unsupported.
+LEGAL_CHAR: ESCAPED_PERCENT | ~('('|')'|','|'⬚'|' '|'\t'|'\n'|'\r');
 
-letter: LEGAL_CHAR | ESCAPED_PERCENT| EMPTY;
+ESCAPED_PERCENT: '\\%';
+COMMENT: '%' ~[\n\r]* -> skip;
+
+letter: LEGAL_CHAR | EMPTY;
 state: LEGAL_CHAR+;
 
 // whitespace is allowed between the elements of each rule but not in state names etc (so we aren't skipping whitespace in the lexer)
 lhs: OPENER SPACE* state SPACE* COMMA SPACE* letter SPACE* CLOSER;
 rhs: OPENER SPACE* state SPACE* COMMA SPACE* letter SPACE* COMMA SPACE* DIRECTION SPACE* CLOSER;
 turing_rule: SPACE* lhs SPACE* ARROW SPACE* rhs SPACE*;
-
-COMMENT: '%' ~[\n\r]* -> skip;
 
 program: (turing_rule | NEWLINE)*;
