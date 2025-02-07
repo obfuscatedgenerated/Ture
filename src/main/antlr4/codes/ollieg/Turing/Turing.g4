@@ -14,8 +14,9 @@ DIRECTION: ('left' | 'right');
 
 // equivalent to ~(OPENER | CLOSER | COMMA | EMPTY | WS | NEWLINE) except this syntax is unsupported.
 LEGAL_CHAR: ~('('|')'|','|'⬚'|' '|'\t'|'\n'|'\r');
+ESCAPED_PERCENT: '\\%';
 
-letter: LEGAL_CHAR | EMPTY;
+letter: LEGAL_CHAR | ESCAPED_PERCENT| EMPTY;
 state: LEGAL_CHAR+;
 
 // whitespace is allowed between the elements of each rule but not in state names etc (so we aren't skipping whitespace in the lexer)
