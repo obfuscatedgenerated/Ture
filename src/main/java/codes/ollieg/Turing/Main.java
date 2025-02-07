@@ -1,6 +1,5 @@
 package codes.ollieg.Turing;
 
-<<<<<<< HEAD
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
@@ -42,10 +41,5 @@ public class Main {
 
         // Print the parse tree
         System.out.println(tree.toStringTree(parser));
-=======
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
->>>>>>> origin/main
     }
 }
