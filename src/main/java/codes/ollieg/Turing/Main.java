@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         // Create a CharStream from input data
         String input = "% Store the first letter in the word as a state\n" +
-                "(qInit, a) -> (qA, a, right)\n" +
+                "(qInit, a) -> (qA, a , right)\n" +
                 "(qInit, b) -> (qB, b, right)\n" +
                 "\n" +
                 "% Move to the end of the tape\n" +
