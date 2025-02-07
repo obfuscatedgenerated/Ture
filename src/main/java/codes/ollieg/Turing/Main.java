@@ -39,7 +39,8 @@ public class Main {
         // Begin parsing at the start rule
         ParseTree tree = parser.program();
 
-        // Print the parse tree
-        System.out.println(tree.toStringTree(parser));
+        // execute
+        TuringExecutor executor = new TuringExecutor();
+        executor.visit(tree);
     }
 }
