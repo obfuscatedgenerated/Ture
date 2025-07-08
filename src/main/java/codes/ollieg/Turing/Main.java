@@ -7,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
         // Create a CharStream from input data
         String input = """
+                INIT qInit
+                
                 % Store the first letter in the word as a state
                 (qInit, a) -> (qA, a , right)
                 (qInit, b) -> (qB, b, right)
