@@ -13,6 +13,16 @@ Eventually there will be a functioning Turing Machine simulator that uses the gr
 
 ## Syntax
 
+### Init declaration
+
+The initial state is declared at the start of the file, before any rules:
+
+```
+INIT state
+```
+
+Where `state` is the name of the initial state.
+
 ### Rules
 
 Rules are defined in the following format:
@@ -46,6 +56,8 @@ You can escape with `\%`.
 ### Replace last letter of tape with the first letter
 
 ```
+INIT qInit
+
 % Store the first letter in the word as a state
 (qInit, a) -> (qA, a, right)
 (qInit, b) -> (qB, b, right)
