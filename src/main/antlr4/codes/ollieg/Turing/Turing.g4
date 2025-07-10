@@ -26,6 +26,7 @@ lhs: OPENER SPACE* from_state=state SPACE* COMMA SPACE* from_letter=letter SPACE
 rhs: OPENER SPACE* to_state=state SPACE* COMMA SPACE* to_letter=letter SPACE* COMMA SPACE* direction=DIRECTION SPACE* CLOSER;
 turing_rule: SPACE* left=lhs SPACE* ARROW SPACE* right=rhs SPACE*;
 
-init_declaration: 'INIT' SPACE init_state=state;
+program: (turing_rule | NEWLINE)*;
 
-program: init_declaration NEWLINE (turing_rule | NEWLINE)*;
+init_declaration: 'INIT' SPACE init_state=state;
+program_with_init: init_declaration NEWLINE program;

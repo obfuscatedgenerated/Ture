@@ -40,7 +40,7 @@ public class Main {
         TuringParser parser = new TuringParser(tokens);
 
         // Begin parsing at the start rule
-        ParseTree tree = parser.program();
+        ParseTree tree = parser.program_with_init();
 
         // execute
         TuringExecutor executor = new TuringExecutor();
