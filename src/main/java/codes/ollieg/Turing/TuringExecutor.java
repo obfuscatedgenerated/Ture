@@ -2,7 +2,6 @@ package codes.ollieg.Turing;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -126,6 +125,7 @@ public class TuringExecutor extends TuringBaseVisitor<String> {
         char[] new_tape = writeTapeLetter(tape, pos, letter);
 
         // update the state
+        // TODO: move state management to results
         current_state = visit(rhs.to_state);
 
         // return the direction
