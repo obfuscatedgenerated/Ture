@@ -1,6 +1,10 @@
 # Ture - Turing Machine
 > An Antlr4 grammar for a formal description of Turing Machine transition rules.
 
+TODO: redo this all
+
+The `Turing.g4` grammar has the quality of life features of [comments](#comments) and the [INIT statement](#init-declaration) whereas `Turing_RulesOnly.g4` parses only the transition rules.
+
 ## Usage
 
 I highly recommend using [Terence Parr's Antlr4 plugin for IntelliJ IDEA](https://plugins.jetbrains.com/plugin/7358-antlr-v4-grammar-plugin) to use the grammar as it has a lot of useful features and handles multibyte characters (such as the empty symbol ⬚) more reliably than using `grun` or the VScode extension.
