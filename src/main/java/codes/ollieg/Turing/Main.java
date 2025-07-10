@@ -45,5 +45,9 @@ public class Main {
         // execute
         TuringExecutor executor = new TuringExecutor();
         executor.visit(tree);
+
+        char[] in_tape = "ababab".toCharArray();
+        char[] out_tape = executor.execute(in_tape);
+        System.out.println(out_tape);
     }
 }
