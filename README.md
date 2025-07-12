@@ -11,7 +11,7 @@ You can run a script by passing it to the compiled program:
 java -jar ./target/Ture.jar LastFirst.ture
 ```
 
-## Inspecting Grammars
+## Inspecting grammars
 
 The `Turing.g4` grammar has the quality of life features used by the interpreter: [comments](#comments) and the [INIT statement](#init-declaration) whereas `Turing_RulesOnly.g4` parses only the transition rules.
 
