@@ -3,32 +3,16 @@ package codes.ollieg.Turing;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Main {
-    public static void main(String[] args) {
-        // Create a CharStream from input data
-        String input = """
-                INIT qInit
-                
-                % Store the first letter in the word as a state
-                (qInit, a) -> (qA, a , right)
-                (qInit, b) -> (qB, b, right)
+    public static void main(String[] args) throws IOException {
+        if (args.length < 1) {
+            throw new IllegalArgumentException("Please provide a file to execute.");
+        }
 
-                % Move to the end of the tape
-                (qA, a) -> (qA, a, right)
-                (qA, b) -> (qA, b, right)
-                (qB, a) -> (qB, a, right)
-                (qB, b) -> (qB, b, right)
-
-                % Backtrack once when we reach the end of the tape
-                (qA, ⬚) -> (qEndA, ⬚, left)
-                (qB, ⬚) -> (qEndB, ⬚, left)
-
-                % Replace the last letter with the first letter and enter the trap state
-                (qEndA, a) -> (qHalt, a, right)
-                (qEndA, b) -> (qHalt, a, right)
-                (qEndB, a) -> (qHalt, b, right)
-                (qEndB, b) -> (qHalt, b, right)""";
-        CharStream charStream = CharStreams.fromString(input);
+        CharStream charStream = CharStreams.fromFileName(args[0]);
 
         // Create the lexer
         TuringLexer lexer = new TuringLexer(charStream);
@@ -42,12 +26,21 @@ public class Main {
         // Begin parsing at the start rule
         ParseTree tree = parser.program_with_init();
 
-        // execute
+        // visit and parse
         TuringExecutor executor = new TuringExecutor();
         executor.visit(tree);
 
-        char[] in_tape = "ababab".toCharArray();
+        // get tape input
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Tape input: ");
+
+        // execute
+        char[] in_tape = scanner.nextLine().toCharArray();
         char[] out_tape = executor.execute(in_tape);
+
+        System.out.print("Tape output: ");
         System.out.println(out_tape);
     }
 }
+
+// TODO: gui
