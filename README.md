@@ -1,11 +1,19 @@
 # Ture - Turing Machine
-> An Antlr4 grammar for a formal description of Turing Machine transition rules.
-
-TODO: redo this all
-
-The `Turing.g4` grammar has the quality of life features of [comments](#comments) and the [INIT statement](#init-declaration) whereas `Turing_RulesOnly.g4` parses only the transition rules.
+> An Antlr4 interpreter for a formal description of Turing Machine transition rules.
 
 ## Usage
+
+The project uses Maven for build and dependency management. You can create a shaded JAR containing all Antlr4 dependencies with `mvn package`.
+
+You can run a script by passing it to the compiled program:
+
+```bash
+java -jar ./target/Ture.jar LastFirst.ture
+```
+
+## Inspecting Grammars
+
+The `Turing.g4` grammar has the quality of life features used by the interpreter: [comments](#comments) and the [INIT statement](#init-declaration) whereas `Turing_RulesOnly.g4` parses only the transition rules.
 
 I highly recommend using [Terence Parr's Antlr4 plugin for IntelliJ IDEA](https://plugins.jetbrains.com/plugin/7358-antlr-v4-grammar-plugin) to use the grammar as it has a lot of useful features and handles multibyte characters (such as the empty symbol ⬚) more reliably than using `grun` or the VScode extension.
 
@@ -13,19 +21,9 @@ Open the `Turing.g4` file in IntelliJ IDEA, right click the `program` parse rule
 
 Eventually there will be a functioning Turing Machine simulator that uses the grammar to parse the transition rules and simulate the machine.
 
-**TODO: update this now there is a maven project with Java code**
-
 ## Syntax
 
-### Init declaration
-
-The initial state is declared at the start of the file, before any rules:
-
-```
-INIT state
-```
-
-Where `state` is the name of the initial state.
+See `LastFirst.ture` for an example program.
 
 ### Rules
 
@@ -49,36 +47,18 @@ It is recommended to add a newline at the end of each rule, but this is optional
 
 Whitespace is permitted between tokens of the rule, but not within tokens such as state names or letters.
 
+### Init declaration
+
+The initial state is declared at the start of the file, before any rules:
+
+```
+INIT state
+```
+
+Where `state` is the name of the initial state.
+
 ### Comments
 
 Comments start with `%` and can be placed anywhere in the program. Comments run from the `%` to the end of the line.
 
 You can escape with `\%`.
-
-## Example programs
-
-### Replace last letter of tape with the first letter
-
-```
-INIT qInit
-
-% Store the first letter in the word as a state
-(qInit, a) -> (qA, a, right)
-(qInit, b) -> (qB, b, right)
-
-% Move to the end of the tape
-(qA, a) -> (qA, a, right)
-(qA, b) -> (qA, b, right)
-(qB, a) -> (qB, a, right)
-(qB, b) -> (qB, b, right)
-
-% Backtrack once when we reach the end of the tape
-(qA, ⬚) -> (qEndA, ⬚, left)
-(qB, ⬚) -> (qEndB, ⬚, left)
-
-% Replace the last letter with the first letter and enter the trap state
-(qEndA, a) -> (qHalt, a, right)
-(qEndA, b) -> (qHalt, a, right)
-(qEndB, a) -> (qHalt, b, right)
-(qEndB, b) -> (qHalt, b, right)
-```
