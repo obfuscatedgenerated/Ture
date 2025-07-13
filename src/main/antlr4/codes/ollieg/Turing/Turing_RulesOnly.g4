@@ -23,4 +23,4 @@ lhs: OPENER SPACE* from_state=state SPACE* COMMA SPACE* from_letter=letter SPACE
 rhs: OPENER SPACE* to_state=state SPACE* COMMA SPACE* to_letter=letter SPACE* COMMA SPACE* direction=DIRECTION SPACE* CLOSER;
 turing_rule: SPACE* left=lhs SPACE* ARROW SPACE* right=rhs SPACE*;
 
-program: (turing_rule | NEWLINE)*;
+program: (turing_rule | NEWLINE)* EOF;
