@@ -152,7 +152,8 @@ public class TuringExecutor extends TuringBaseVisitor<String> {
             throw new IllegalArgumentException("init_pos cannot be less than 0");
         }
 
-        if (init_pos > in_tape.length - 1) {
+        // manual check if tape length is 0 (therefore pos 0 is allowable as it falls back to EMPTY)
+        if (init_pos > in_tape.length - 1 && in_tape.length != 0 && init_pos != 0) {
             throw new IllegalArgumentException("init_pos is outside tape range");
         }
 
