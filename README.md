@@ -1,3 +1,6 @@
+# NO LONGER UPDATED
+## [Please use the web version for the best experience](https://github.com/obfuscatedgenerated/ture-web)
+
 # Ture - Turing Machine
 > An Antlr4 interpreter for a formal description of Turing Machine transition rules.
 
